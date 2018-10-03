@@ -44,8 +44,7 @@ public class ProcesarVenta extends HttpServlet {
         DaoCliente daoC=new DaoCliente();
         DaoDetalle DaoD=new DaoDetalle();
         try 
-        {
-            
+        {            
             if (request.getParameter("codigo")!=null) 
             {
                 if (Integer.parseInt(request.getParameter("codigo"))>0) {
@@ -56,21 +55,36 @@ public class ProcesarVenta extends HttpServlet {
             }
             if (request.getParameter("btnNuevo")!=null) 
             {
-                fa.setCodigoFactura(0);
-                fa.setNumeroFactura(request.getParameter("NumeroF"));
-                fa.setCodigoVendedor(Integer.parseInt(request.getParameter("codVendedor")));
-                fa.setCodigoCliente(daoC.getidC(request.getParameter("codCliente")));
-                fa.setTotalVenta(0.0);
-                Date fecha= new Date();            
-                fa.setFechaRegitro(new SimpleDateFormat("dd-MM-yyyy").format(fecha));
-                daoF.AgregarFactura(fa);                
-                response.sendRedirect("Ventas.jsp?codigo="+DaoD.getCodFact(fa.getNumeroFactura(), fa.getCodigoCliente()));
+                if (request.getParameter("NumeroF")==null && request.getParameter("codVendedor")==null &&
+                    request.getParameter("codCliente")==null)  
+                {
+                    response.sendRedirect("Ventas.jsp");
+                }else{
+                    fa.setCodigoFactura(0);
+                    fa.setNumeroFactura(request.getParameter("NumeroF"));
+                    fa.setCodigoVendedor(Integer.parseInt(request.getParameter("codVendedor")));
+                    fa.setCodigoCliente(daoC.getidC(request.getParameter("codCliente")));
+                    fa.setTotalVenta(0.0);
+                    Date fecha= new Date();            
+                    fa.setFechaRegitro(new SimpleDateFormat("dd-MM-yyyy").format(fecha));
+                    daoF.AgregarFactura(fa);                
+                    response.sendRedirect("Ventas.jsp?codigo="+DaoD.getCodFact(fa.getNumeroFactura(), fa.getCodigoCliente()));
+                    
+                }                    
             }
-            response.sendRedirect("Ventas.jsp?codigo="+fa.getCodigoFactura());
+            if (request.getParameter("verTodas")!=null) 
+            {
+                response.sendRedirect("ListaFactura.jsp");
+            }
+            
         } 
         catch (Exception e) 
         {
             throw e;
+        }
+        finally
+        {
+            response.sendRedirect("Ventas.jsp?error=nulo");
         }
     }
 
