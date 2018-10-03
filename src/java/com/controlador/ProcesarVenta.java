@@ -49,7 +49,8 @@ public class ProcesarVenta extends HttpServlet {
             if (request.getParameter("codigo")!=null) 
             {
                 if (Integer.parseInt(request.getParameter("codigo"))>0) {
-                    daoF.sumarDetalles(Integer.parseInt(request.getParameter("codigo")));                    
+                    daoF.sumarDetalles(Integer.parseInt(request.getParameter("codigo")));
+                    
                     response.sendRedirect("Ventas.jsp");
                 }                
             }

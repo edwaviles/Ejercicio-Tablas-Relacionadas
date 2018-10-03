@@ -47,6 +47,39 @@ public class DaoFactura extends Conexion{
         return ls;
     }
     
+     public List<Factura> mostrarTodasFacturas(int codigoVen) throws Exception
+    {
+        ResultSet res;
+        List<Factura> ls=new ArrayList();
+        try 
+        {
+            this.conectar();
+            String sq1="select * from factura where  estadoDetalles = 1 and codigoVendedor = ?;";
+            PreparedStatement pre=this.getCon().prepareStatement(sq1);
+            pre.setInt(1, codigoVen); 
+            res=pre.executeQuery();
+            while (res.next()) 
+            {                
+                Factura fa=new Factura();
+                fa.setCodigoFactura(res.getInt("codigoFactura"));
+                fa.setNumeroFactura(res.getString("numeroFactura"));
+                fa.setCodigoVendedor(res.getInt("codigoVendedor"));
+                fa.setCodigoCliente(res.getInt("codigoCliente"));
+                fa.setTotalVenta(res.getDouble("totalVenta"));
+                fa.setFechaRegitro(res.getString("fechaRegistro"));
+                ls.add(fa);
+            }
+        } 
+        catch (Exception e) 
+        {
+            throw e;
+        }finally
+        {
+            this.desconectar();            
+        }
+        return ls;
+    }
+    
     public void AgregarFactura(Factura fa) throws Exception
     {
         try 

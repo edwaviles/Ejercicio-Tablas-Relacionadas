@@ -21,7 +21,7 @@
         <script src="recursos/js/JsVentas.js" type="text/javascript"></script>
         <script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js"> </script> 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Facturas</title>
     </head>
     <body>
  
@@ -41,7 +41,7 @@
                         <img src="recursos/Imagenes/fac.png" style="width: 50px; height: 50px" >                        
                         <label class="robo" style="font-weight: 300; margin-bottom: 0px; font-size: 35px;">Facturas</label>
                         <p class="robo" style="font-weight: 300; font-size: 16px; height: 40px;">Gesti&oacute;n  de Facturas</p>
-                </div> 
+            </div> 
             <div class="clearfix"></div>
             <form name="frmFactura" action="procesarVenta" method="get">
                 <div class="row">
@@ -380,10 +380,12 @@
                         </div>
                     </div> 
                     <div class="form column col-md-2">
-                        <div class="form-group">
-                            <a href="procesarVenta?codigo=<%=codigo%>">
-                                <button type="button" class="btn btn-danger">Guardar venta</button>
-                            </a>
+                        <div class="form-group">                            
+                            <a href="ListaFactura.jsp" target="_blank"></a> 
+                                <a href="procesarVenta?codigo=<%=codigo%>">
+                                    <button type="button" class="btn btn-danger" onclick="
+                                            window.open('ListaFactura.jsp', '_blank');">Guardar venta</button>
+                                </a>                            
                         </div>
                     </div>
                 </div>
