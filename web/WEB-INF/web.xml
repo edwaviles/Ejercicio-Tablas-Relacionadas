@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>ProcesarVenta</servlet-name>
+        <servlet-class>com.controlador.ProcesarVenta</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProcesarProducto</servlet-name>
+        <servlet-class>com.controlador.ProcesarProducto</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProcesarV</servlet-name>
+        <servlet-class>com.controlador.ProcesarV</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProcesarVentas</servlet-name>
+        <servlet-class>com.controlador.ProcesarVenta</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProcesarVenta</servlet-name>
+        <url-pattern>/procesarVenta</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProcesarProducto</servlet-name>
+        <url-pattern>/procesarProducto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProcesarV</servlet-name>
+        <url-pattern>/procesarV</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProcesarVentas</servlet-name>
+        <url-pattern>/procesarVentas</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>
